@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Thesis Drive/BG-Cutscene.jpg/CG01.jpg" type="Texture" id=1]
+
+[node name="SpaceA_Scene" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Cg01" type="Sprite" parent="."]
+position = Vector2( 1983, 1077 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )

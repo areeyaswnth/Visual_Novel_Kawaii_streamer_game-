@@ -1,0 +1,139 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scene/SpaceA_Scene1_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Script/scence_script.gd" type="Script" id=2]
+[ext_resource path="res://Script/Label_main.gd" type="Script" id=3]
+[ext_resource path="res://Thesis Drive/Element/Header.png" type="Texture" id=4]
+[ext_resource path="res://Thesis Drive/Element/Textbox01.png" type="Texture" id=5]
+[ext_resource path="res://Thesis Drive/Element/Background2.jpg" type="Texture" id=6]
+[ext_resource path="res://Thesis Drive/Element/Spritebox_Small.png" type="Texture" id=7]
+[ext_resource path="res://Thesis Drive/Element/Next button.png" type="Texture" id=8]
+[ext_resource path="res://Thesis Drive/Character.png/MC Head Sprite/MC00.png" type="Texture" id=9]
+[ext_resource path="res://Thesis Drive/Character.png/MC Head Sprite/MC05.png" type="Texture" id=10]
+[ext_resource path="res://Thesis Drive/Character.png/MC Head Sprite/MC01.png" type="Texture" id=11]
+[ext_resource path="res://font/JS Sadayu Bold/JS Sadayu Bold.ttf" type="DynamicFontData" id=12]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://font/JS Sadayu Bold/JS Sadayu Bold.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 30
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 11 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://font/JS Sadayu Bold/JS Sadayu Bold.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+use_mipmaps = true
+use_filter = true
+extra_spacing_space = 3
+font_data = SubResource( 12 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "MC00",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "MC01",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "MC05",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 123.182, 113.094 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
+
+[node name="scene1_1" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background2" type="Sprite" parent="."]
+position = Vector2( 995, 541 )
+texture = ExtResource( 6 )
+
+[node name="Header" type="Sprite" parent="."]
+position = Vector2( 996, 48 )
+texture = ExtResource( 4 )
+
+[node name="SpriteboxSmall" type="Sprite" parent="."]
+position = Vector2( 1456, 905 )
+texture = ExtResource( 7 )
+
+[node name="SpaceA_Scene" parent="." instance=ExtResource( 1 )]
+position = Vector2( 449, 119 )
+scale = Vector2( 0.275, 0.275 )
+
+[node name="Textbox01" type="Sprite" parent="."]
+position = Vector2( 838, 906 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 430.0
+margin_top = 824.0
+margin_right = 1227.0
+margin_bottom = 1029.0
+theme = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
+text = "19.03
+เวลาหลังเลิกเรียนก็เปรียบเสมือนโลกอีกใบของผมที่จะได้ท่องเน็ต หรือเล่นเกม
+อะไรก็ตามที่ไม่ต้องวุ่นวายกับคนที่เดินผ่านไปผ่านมา..."
+autowrap = true
+percent_visible = 0.0
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Label"]
+
+[node name="Timer" type="Timer" parent="Label"]
+one_shot = true
+
+[node name="Mc" type="AnimatedSprite" parent="."]
+position = Vector2( 1454, 903 )
+scale = Vector2( 0.375, 0.375 )
+frames = SubResource( 6 )
+animation = "MC01"
+
+[node name="Next" type="Node2D" parent="."]
+position = Vector2( 1236, 1017 )
+scale = Vector2( 0.22, 0.252976 )
+
+[node name="NextButton" type="Sprite" parent="Next"]
+texture = ExtResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="Next"]
+position = Vector2( 9.09082, 0 )
+linear_damp = 13.861
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Next/Area2D"]
+position = Vector2( -9.09082, 0 )
+shape = SubResource( 5 )
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 424.0
+margin_top = 770.0
+margin_right = 671.0
+margin_bottom = 1008.0
+theme = SubResource( 10 )
+text = "MC
+"
+
+[connection signal="input_event" from="Next/Area2D" to="Label" method="_on_Area2D_input_event"]
